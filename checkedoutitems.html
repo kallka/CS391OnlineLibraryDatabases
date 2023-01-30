@@ -1,0 +1,165 @@
+<!--
+Uses as a model the example from CS340 Canvas Modules by Professor Curry.
+Taken from website on 7/14/2022.
+-->
+
+<html>
+<head>
+<title>Checked Out Items</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+<h1>Checked Out Items</h1>
+<p>View, add, update, or delete checked out items.
+  (Notes: This is the page that best represents CheckedOutItemDetails; however Checked Out Items made
+  for a better page title. Both tables represent this list of checked out items. In addition, this page
+  pulls from the tables: Patrons, ItemLocations, Books, OnlineLibraries, Authors, and Genres.
+  It makes it easier to see how items would be updated.)   
+</p>
+<!-- Tab Links -->
+<nav>
+  <div>
+    <h4>Navigation Bar</h4>
+  </div>
+  <ul class='nav-links'>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="patrons.html">Patrons</a></li>
+    <li><a class='active' href="checkedoutitems.html">Checked Out Items</a></li>
+    <li><a href="itemlocations.html">Item Locations</a></li>
+    <li><a href="onlinelibraries.html">Online Libraries</a></li>
+    <li><a href="books.html">Books</a></li>
+    <li><a href="authors.html">Authors</a></li>
+    <li><a href="genres.html">Genres</a></li>
+  </ul>
+</nav>
+
+<!-- VIEW, UPDATE, DELETE, CREATE-->
+<!-- view -->
+<div id="overview_checked_out_items" style="display: block">
+  <p><strong>Overview Checked Out Items</strong></p>
+  <table border="1" cellpadding="5">
+    <tr>
+      <th>ID Patron</th>
+      <th>Patron First Name</th>
+      <th>Patron Last Name</th>
+      <th>Book</th>
+      <th>Library Name</th>
+    </tr>
+    <tr>
+      <td align="right" >1</td>
+      <td align="right" >Jonas</td>
+      <td align="right" >Tilde</td>
+      <td align="right" >Where the Crawdads Sing</td>
+      <td align="right" >Los Angeles Public Library</td>
+    </tr>
+    <tr>
+      <td align="right" >2</td>
+      <td align="right" >Amanda</td>
+      <td align="right" >Danai</td>
+      <td align="right" >Where the Crawdads Sing</td>
+      <td align="right" >Universal Digital Library</td>
+    </tr>
+    <tr>
+      <td align="right" >3</td>
+      <td align="right" >Shinya</td>
+      <td align="right" >Ragna</td>
+      <td align="right" >The Hotel Nantucket</td>
+      <td align="right" >Los Angeles Public Library</td>
+    </tr>
+  </table>
+  </div>
+<p>&nbsp;</p>
+</div>
+
+<!-- create -->
+<div id="insert" style="display: block">
+    <form id="addCheckedOutItem">
+        <legend><strong>Check Out Item </strong></legend>
+          <fieldset class="fields">
+            <p></p>
+            <label> Patron </label> <select name="Patron">
+              <option value="1" selected>Jonas Tilde</option>
+              <option value="2">Amanda Danai</option>
+              <option value="3">Shinya Ragna</option>
+              </select>
+
+              <br>
+              <label> Item Location </label> <select name="Library">
+                <option value="1" selected>Where the Crawdads Sing at Los Angeles Public Library</option>
+                <option value="2">Where the Crawdads Sing at Universal Digital Library</option>
+                <option value="3">The Hotel Nantucket at Los Angeles Public Library</option>
+                </select>  
+            <br>
+           
+            <label> Checked Out Date </label> <input type="date" name="RentalDate">
+            <br>
+            <label> Check Out Length (days) </label> <input type="number" min="0" name="RentalDuration">
+            <p></p>
+
+          </fieldset>
+          <input class="btn" type="submit" id="AddCheckedOutItem" value="Check Out">
+          <input class="btn" type="button" value="Cancel">
+	</form>
+</div>
+
+<!-- update -->
+<p>&nbsp;</p>
+<div id="update" style="display: block">
+  <form id="updateCheckedOutItems">
+    <legend><strong>Update Checked Out Item </strong></legend>
+    <fieldset class="fields">
+      <p></p>
+      <label> Patron </label> <select name="Patron">
+        <option value="1" selected>Jonas Tilde</option>
+        <option value="2">Amanda Danai</option>
+        <option value="3">Shinya Ragna</option>
+        </select>
+
+        <br>
+        <label> Item Location </label> <select name="Library">
+          <option value="1" selected>Where the Crawdads Sing at Los Angeles Public Library</option>
+          <option value="2">Where the Crawdads Sing at Universal Digital Library</option>
+          <option value="3">The Hotel Nantucket at Los Angeles Public Library</option>
+          </select>  
+      <br>
+     
+      <label> Checked Out Date </label> <input type="date" name="RentalDate">
+      <br>
+      <label> Check Out Length (days) </label> <input type="number" min="0" name="RentalDuration">
+      <p></p>
+
+    </fieldset>
+    <input class="btn" type="submit" id="AddCheckedOutItem" value="Check Out">
+    <input class="btn" type="button" value="Cancel">
+</form>
+</div>
+
+<!-- delete -->
+<p>&nbsp;</p>
+<div id="delete" style="display: block">
+  <form id="deleteCheckedOutItem">
+      <legend><strong>Return Checked Out Item</strong></legend>
+          <fieldset class="fields">
+          <p>This will return a book to the online shelves.
+            It will not delete books, patrons, or libraries from the database.</p>
+            <label> Patron </label> <select name="Patron">
+              <option value="1" selected>Jonas Tilde</option>
+              <option value="2">Amanda Danai</option>
+              <option value="3">Shinya Ragna</option>
+              </select>
+      
+              <br>
+              <label> Item Location </label> <select name="Library">
+                <option value="1" selected>Where the Crawdads Sing at Los Angeles Public Library</option>
+                <option value="2">Where the Crawdads Sing at Universal Digital Library</option>
+                <option value="3">The Hotel Nantucket at Los Angeles Public Library</option>
+                </select>  
+            <p></p>
+    </fieldset>
+    <input class="btn" type="submit" id="DeleteCheckedOutItem" value="Return Book">
+          <input class="btn" type="button" value="Cancel" >
+  </form> 
+</div>
+</body>
+</html>

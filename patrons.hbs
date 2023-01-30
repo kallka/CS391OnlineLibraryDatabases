@@ -1,0 +1,92 @@
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="./js/delete_patron.js"></script>
+
+
+<title>Patrons</title>
+</head>
+
+<h1>Patrons</h1>
+  <p>
+    View, add, update or delete patrons from your database.
+  </p>
+
+<div id="overview_patrons" style="display: block"></div>
+<h2>Overview Patrons</h2>
+<table id="patron-table">
+   <thead>
+        <tr>
+            {{#each data.[0]}}
+        <th>
+            {{@key}}
+        </th>
+            {{/each}}
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#each data}}
+        <tr data-value={{this.id}}>>
+            <td>{{this.IDPatron}}</td>
+            <td>{{this.FirstName}}</td>
+            <td>{{this.LastName}}</td>
+            <td>{{this.Email}}</td>
+            <td><button onclick="deletePatron({{this.IDPatron}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+
+{{! -- Add a Patron to the Database --}}
+<p>&nbsp;</p>
+    <fieldset class="fields">
+<form id="add-patron-form" method="POST" action="/add-patron-form">
+
+<legend><strong>Add Patron</strong></legend>
+<p>To add a new patron to the database, please enter their information below. Email is not required.</p>
+    <p></p>
+    <label for="input-FirstName"> First Name </label> 
+    <input type="text" name="input-FirstName" id="input-FirstName" placeholder="Enter First Name">
+            
+    <label> Last Name </label>
+    <input type="text" name="input-LastName" id="input-LastName" placeholder="Enter Last Name">
+            
+    <label> Email </label> 
+    <input type="text" name="input-Email" id="input-Email" placeholder="Enter Email">
+    <p></p>
+    <input type="submit">
+    </fieldset>
+</form> 
+
+
+
+<!-- update -->
+<p>&nbsp;</p>
+<fieldset class="fields">
+
+    <form method="POST" id="UpdatePatron">
+<legend><strong>Update Patron Email</strong></legend>
+        <p>To update patron email, select patron and enter email.</p>
+            <p></p>
+            <label for ="input-fullname"> Select Patron to Update  </label> 
+            <select name="input-fullname" id="SelectName">
+                <option value="test"> Patron Name</option>
+                {{#each data}}
+                <option value="{{this.IDPatron}}">{{this.FirstName}} {{this.LastName}}</option>
+                {{/each}}
+            </select>
+            <br>
+            <br>
+            <label> E-mail  </label> 
+            <input type="text" name="Email" id="input-email" placeholder="Enter E-mail">
+            <p></p>
+            <input type="submit">
+
+	</form> 
+    </fieldset>
+
+    <script src="./js/update_patron.js"></script> {{! -- in app.js "app.use(express.static(__dirname + '/public'));" Therefore public is the root folder set}}
+{{!-- </div> --}}

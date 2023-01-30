@@ -1,0 +1,105 @@
+<!--
+Uses as a model the example from CS340 Canvas Modules by Professor Curry.
+Taken from website on 7/14/2022.
+-->
+
+
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="./js/delete_itemlocation.js"></script>
+<title>Item Locations</title>
+</head>
+
+<h1>Item Locations</h1>
+  <p>
+    View, add or delete book locations. There is no need for an edit function as an item can only <i>be</i> at or <i>not be</i> at a location.
+  </p>
+
+<div id="overview_itemlocations" style="display: block">
+    <p><strong>Overview Item Locations</strong></p>
+    <table id="itemlocations-table">
+    <thead>
+        <tr>
+          <th>Item Location ID</th>
+          <th>Library Name</th>
+          <th>Book Title</th>
+          <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each data}}
+        <tr data-value={{this.id}}>>
+            <td>{{this.IDItemLocation}}</td>
+            <td>{{this.LibraryName}}</td>
+            <td>{{this.Title}}</td>
+            <td><button onclick="deleteItemLocationJS({{this.IDItemLocation}})">Delete</button></td>
+
+        </tr>
+        {{/each}}
+    </tbody>
+    </table>
+       
+    <p>&nbsp;</p>
+    </div> 
+
+<!-- search for book id -->
+<!-- search -->
+<div id="search">
+  <fieldset class="fields">
+
+    <form method="GET" id="searchIDBook" action="/itemlocations">
+      <legend>
+        <strong>Search for Books at a Certain Online Library</strong>
+      </legend>
+      <p>Displays all books and their item location ID at a library.</p>
+      <label> Library Name: </label> 
+      <select name="Library">
+        {{#each library_info}}
+        <option value={{this.IDOnlineLibrary}}>{{this.LibraryName}}</option>
+        {{/each}}
+      </select>
+      <input class="btn" type="submit" id="seachItemLocations" value="Search">
+    </form> 
+    <br>
+    <a href='/itemlocations'><button>Reset Table</button></a>
+
+  </fieldset>
+
+<p>&nbsp;</p>
+</div>
+
+<!-- ADD BOOK TO LIBRARY -->
+<div id="insert">        
+  <fieldset class="fields">
+
+    <form method="POST" id="itemlocation" action="/add-itemlocation-form">
+        <legend>
+          <strong>Add Book/Library Location</strong>
+        </legend>
+            <p></p>
+
+            <label>Book: </label> 
+            <select name="Title">
+              {{#each book_info}}
+                <option value={{this.IDBook}} selected>{{this.Title}}</option>
+              {{/each}}
+              </select>
+              <br>
+              <p></p>
+            <label>Library Location: </label> 
+            <select name="Library">
+              {{#each library_info}}
+                <option value={{this.IDOnlineLibrary}} selected>{{this.LibraryName}}</option>
+              {{/each}}
+              </select>
+              <p></p>
+          <input class="btn" type="submit" id="AddItemLocation" value="Add Item Location">
+	
+    </form> 
+  </fieldset>
+
+</div>
+</head>
+</html>
+

@@ -1,0 +1,169 @@
+<!--
+Uses as a model the example from CS340 Canvas Modules by Professor Curry.
+Taken from website on 7/14/2022.
+-->
+
+
+<html>
+<head>
+<title>Books</title>
+<link href="../style.css" rel="stylesheet" type="text/css" />
+
+<h1>Books</h1>
+  <p>
+    View, add, update or delete books in your database.
+  </p>
+
+  <!-- Tab Links -->
+  <nav>
+      <div>
+        <h4>Navigation Bar</h4>
+      </div>
+      <ul class='nav-links'>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="patrons.html">Patrons</a></li>
+        <li><a href="checkedoutitems.html">Checked Out Items</a></li>
+        <li><a href="itemlocations.html">Item Locations</a></li>
+        <li><a href="onlinelibraries.html">Online Libraries</a></li>
+        <li><a class='active' href="books.html">Books</a></li>
+        <li><a href="authors.html">Authors</a></li>
+        <li><a href="genres.html">Genres</a></li>
+      </ul>
+  </nav>
+
+<body>
+<!-- VIEW, UPDATE, DELETE, CREATE-->
+<!-- view, update, delete, create -->
+<div id="overview_books" style="display: block">
+  <p><strong>Overview Books</strong></p>
+  <table border="1" cellpadding="5">
+    <tr>
+      <th>ID Book</th>
+      <th>Book Title</th>
+      <th>Author First Name</th>
+      <th>Author Last Name</th>
+      <th>Genre</th>
+      <th>Number of Copies</th>
+      <th>Number of Locations</th>
+    </tr>
+    <tr>
+      <td align="right" >1</td>
+      <td align="right" >Where the Crawdads Sing</td>
+      <td align="right" >Delia</td>
+      <td align="right" >Owens</td>
+      <td align="right" >Fiction</td>
+      <td align="right" >15</td>
+      <td align="right" >5</td>
+    </tr>
+    <tr>
+      <td align="right" >2</td>
+      <td align="right" >It Ends with Us</td>
+      <td align="right" >Colleen</td>
+      <td align="right" >Hoover</td>
+      <td align="right" >Fiction</td>
+      <td align="right" >9</td>
+      <td align="right" >7</td>
+    </tr>
+    <tr>
+      <td align="right" >3</td>
+      <td align="right" >Verity</td>
+      <td align="right" >Colleen</td>
+      <td align="right" >Hoover</td>
+      <td align="right" >Fiction</td>
+      <td align="right" >21</td>
+      <td align="right" >17</td>
+    </tr>
+</table>
+<p>&nbsp;</p>
+</div> 
+
+<!-- create new book-->
+<div id="insert" style="display: block">
+  <form id="addBook">
+      <legend><strong>Add Book </strong></legend>
+        <fieldset class="fields">
+          <p>If genre, author, or library do not exist, please first create these fields using the following links:
+            <a href="authors.html">Authors</a> | 
+            <a href="genres.html">Genres</a> | 
+            <a href="onlinelibraries.html">Online Libraries</a>
+          </p>
+          <label> Title </label> <input type="text" name="Title" placeholder="BOOK TITLE">
+          <label> Genre </label> <select name="Genre">
+            <option value="1" selected>Fiction</option>
+            <option value="2">NonFiction</option>
+            <option value="3">Biography</option>
+            <option value="4">Horror</option>
+            </select>
+            <label> Author </label> <select name="Author">
+              <option value="1" selected>Delia Owens</option>
+              <option value="2">Colleen Hoover</option>
+              <option value="3">Elin Hilderbrand</option>
+              <option value="4">John Grisham</option>
+              </select>
+              <br>
+              <label> Online Library </label> <select name="Library">
+                <option value="1" selected>Los Angeles Public Library</option>
+                <option value="2">New York Public Library</option>
+                <option value="3">Universal Digital Library</option>
+                <option value="4">World Digital Library</option>
+                </select>
+                <p></p>
+
+        </fieldset>
+        <input class="btn" type="submit" id="AddBook" value="Add Book">
+        <input class="btn" type="button" value="Cancel">
+</form>
+</div>
+
+<!-- update a book-->
+<p>&nbsp;</p>
+<div id="update">
+  <form method="POST" id="UpdateBook">
+      <legend><strong>Update a Book by Title</strong></legend>
+      <fieldset class="fields">
+        <br>
+
+        <label> Title </label> <select name="Library">
+          <option value="1" selected>Where the Crawdads Sing</option>
+          <option value="2">It Ends with Us</option>
+          <option value="3">Verity</option>
+          </select>  
+        <label> Author </label> <select name="Author">
+          <option value="1" selected>Delia Owens</option>
+          <option value="2">Colleen Hoover</option>
+          <option value="3">Elin Hilderbrand</option>
+          <option value="4">John Grisham</option>
+          </select>
+        <label> Genre </label> <select name="Genre">
+          <option value="1" selected>Fiction</option>
+          <option value="2">NonFiction</option>
+          <option value="3">Biography</option>
+          <option value="4">Horror</option>
+          </select>
+          <p></p>
+        </fieldset>
+        <input class="btn" type="submit" id="UpdateBook" value="Update Book">
+        <input class="btn" type="button" value="cancel" onClick="browseBooks()">
+</form> 
+</div>
+
+    <!-- delete -->
+    <p>&nbsp;</p>
+    <div id="delete" style="display: block">
+      <form method="POST" id="deleteBook">
+          <legend><strong>Delete Book</strong></legend>
+              <fieldset class="fields">
+              <p>This will permanently delete a book from your database.</p>
+              <input type="hidden" name="IDBook" id="DeleteIDBook" value="1">
+              <label> Book ID </label> <input type="number" min="0" name="IDBook" placeholder="1">  
+              <p></p>
+     
+        </fieldset>
+        <input class="btn" type="submit" id="deleteBook" value="Delete Book">
+              <input class="btn" type="button" value="Cancel" onClick="browseBooks()">
+      </form> 
+    </div>
+
+</body>
+</head>
+</html>

@@ -1,0 +1,122 @@
+<!--
+Uses as a model the example from CS340 Canvas Modules by Professor Curry.
+Taken from website on 7/14/2022.
+-->
+
+
+<html>
+<head>
+<title>Item Locations</title>
+<link href="../style.css" rel="stylesheet" type="text/css" />
+
+<h1>Item Locations</h1>
+  <p>
+    View, add or delete book locations. There is no need for an edit function as an item can only <i>be</i> at or <i>not be</i> at a location.
+  </p>
+
+  <!-- Tab Links -->
+  <nav>
+      <div>
+        <h4>Navigation Bar</h4>
+      </div>
+      <ul class='nav-links'>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="patrons.html">Patrons</a></li>
+        <li><a href="checkedoutitems.html">Checked Out Items</a></li>
+        <li><a class='active' href="itemlocations.html">Item Locations</a></li>
+        <li><a href="onlinelibraries.html">Online Libraries</a></li>
+        <li><a href="books.html">Books</a></li>
+        <li><a href="authors.html">Authors</a></li>
+        <li><a href="genres.html">Genres</a></li>
+      </ul>
+  </nav>
+
+<!-- VIEW, UPDATE, DELETE, CREATE-->
+<!-- view, update, delete -->
+<div id="overview_item_locations" style="display: block">
+  <p><strong>Overview Item Locations</strong></p>
+  <table border="1" cellpadding="5">
+    <tr>
+      <th></th>
+      <th>ID Online Library</th>
+      <th>Online Library Name</th>
+      <th>ID Book</th>
+      <th>Book Title</th>
+    </tr>
+    <tr>
+      <td><a href="#">Delete</a></td>
+      <td align="right" >1</td>
+      <td align="right" >Los Angeles Public Library</td>
+      <td align="right" >2</td>
+      <td align="right" >Where the Crawdads Sing</td>
+    </tr>
+    <tr>
+      <td><a href="#">Delete</a></td>
+      <td align="right" >2</td>
+      <td align="right" >Universal Digital Library</td>
+      <td align="right" >1</td>
+      <td align="right" >Where the Crawdads Sing</td>
+    </tr>
+    <tr>
+      <td><a href="#">Delete</a></td>
+      <td align="right" >1</td>
+      <td align="right" >Los Angeles Public Library</td>
+      <td align="right" >3</td>
+      <td align="right" >The Hotel Nantucket</td>
+    </tr>
+</table>
+<p>&nbsp;</p>
+</div> 
+
+<!-- search for book id -->
+<!-- search -->
+<div id="search">
+  <form method="POST" id="searchIDBook">
+      <legend><strong>Search for Books at a Library</strong>
+       </legend>
+        <fieldset class="fields">
+          <p>Returns all books and their item location ID at a library.</p>
+          <label> Select the library </label> <select name="Library">
+            <option value="1" selected>Los Angeles Public Library</option>
+            <option value="2">New York Public Library</option>
+            <option value="3">Universal Digital Library</option>
+            <option value="4">World Digital Library</option>
+            </select>
+            <p></p>
+
+    </fieldset>
+        <input class="btn" type="submit" id="seachItemLocations" value="Search">
+</form> 
+<p>&nbsp;</p>
+</div>
+
+<!-- create -->
+<div id="insert">
+    <form method="POST" id="addPatron">
+        <legend><strong>Add Book/Library Location</strong>
+        </legend>
+          <fieldset class="fields">
+            <p></p>
+
+            <label> Select the book </label> <select name="Title">
+              <option value="1" selected>Where the Crawdad's Sing</option>
+              <option value="2">It Ends with Us</option>
+              <option value="3">Verity</option>
+              <option value="4">The Hotel Nantucket</option>
+              </select>
+            <label> and add to library location </label> <select name="Library">
+              <option value="1" selected>Los Angeles Public Library</option>
+              <option value="2">New York Public Library</option>
+              <option value="3">Universal Digital Library</option>
+              <option value="4">World Digital Library</option>
+              </select>
+              <p></p>
+
+      </fieldset>
+          <input class="btn" type="submit" id="AddItemLocation" value="Add Item Location">
+          <input class="btn" type="button" value="Cancel" onClick="browseItemLocations()">
+	</form> 
+</div>
+</head>
+</html>
+

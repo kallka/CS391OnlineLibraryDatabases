@@ -1,0 +1,121 @@
+<!--
+Uses as a model the example from CS340 Canvas Modules by Professor Curry.
+Taken from website on 7/14/2022.
+-->
+
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="./js/delete_book.js"></script>
+
+
+<title>Books</title>
+</head>
+
+<h1>Books</h1>
+  <p>
+    View, add, update or delete books in your database.
+  </p>
+
+<body>
+<div id="overview_books" style="display: block">
+<h2>Overview Books</h2>
+  <table id = "book-table">
+    <tr>
+      <th>Book ID</th>
+      <th>Title</th>
+      <th>Author First Name</th>
+      <th>Author Last Name</th>
+      <th>Genre</th>
+      <th>Delete</th>
+    </tr>
+    {{#each table_info}}
+    <tr>
+      <td>{{this.IDBook}}</td>
+      <td>{{this.Title}}</td>
+      <td>{{this.AuthorFirstName}}</td>
+      <td>{{this.AuthorLastName}}</td>
+      <td>{{this.Genre}}</td>
+      <td><button onclick="deleteBookJS({{this.IDBook}})">Delete</button></td>
+    </tr>
+    {{/each}}
+  </table>
+       
+  <p>&nbsp;</p>
+  </div> 
+
+<!-- ADD a new book using SQL "INSERT"-->
+
+ <fieldset class="fields">
+    <form method="POST" id="addBook" action="/add-book-form">
+<legend><strong>Add a New Book</Strong></legend>
+  <p>To add a new book to the database, please enter their information below. Select Author and Genre from the drop downs.</p>
+  <p>If desired genre or author does not exist, please first create these fields using the following links:
+            <a href="/authors">Authors</a> | 
+            <a href="/genres">Genres</a></p>
+           <p></p>
+          <label for="input-Title"> Title </label> 
+          <input type="text" name="input-Title" id="input-Title" placeholder="Title">
+          <br />
+          <p></p>
+          <label for="input-BookAuthorID" >Author</label>
+            <select name="input-BookAuthorID">
+                <option value="None"> Null </option>
+                {{#each author_info}}
+                <option value="{{this.IDAuthor}}">{{this.AuthorFirstName}} {{this.AuthorLastName}}</option>
+                {{/each}}
+            </select>
+          <label for="Book_GenreID" value="">Genre</label>
+            <select name="input-BookGenreID">
+                <option value="None"> Null </option>
+                {{#each genre_info}}
+                <option value="{{this.IDGenre}}">{{this.Genre}}</option>
+                {{/each}}
+            </select>
+            <p></p>
+            <input type="submit">
+    </form> 
+  </fieldset>
+
+<!-- Update a book USING SQL "UPDATE" AJAX-->
+<p>&nbsp;</p>
+<fieldset class="fields">
+    <form method="POST" id="UpdateBook">
+        <legend><strong>Update Book</strong> </legend>
+        <p>To update a book's author or genre, select the book and then select author and genre.</p>
+            <p></p>
+            <label> Select the Book to Update </label> 
+             <select id="input-BookID">
+                {{#each table_info}}
+                <option value="{{this.IDBook}}">{{this.Title}}</option>
+                {{/each}}
+            </select>
+            <br>
+            <br>
+            <label>Author</label>
+            <select id="input-BookAuthorID">
+                <option value= 0> Null </option>
+                {{#each author_info}}
+                <option value="{{this.IDAuthor}}">{{this.AuthorFirstName}} {{this.AuthorLastName}}</option>
+                {{/each}}
+            </select>
+            <label>Genre</label>
+              <select id="input-BookGenreID">
+                <option value= 0> Null </option>
+
+                {{#each genre_info}}
+                <option value="{{this.IDGenre}}">{{this.Genre}}</option>
+                {{/each}}
+              </select>
+            <p></p>
+            <input type="submit">
+  </form>
+  </fieldset>
+
+  <script src="./js/update_book.js"></script> 
+
+
+
+</body>
+</head>
+</html>

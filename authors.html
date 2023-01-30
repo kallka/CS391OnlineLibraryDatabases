@@ -1,0 +1,169 @@
+<!--
+Uses as a model the example from CS340 Canvas Modules by Professor Curry.
+Taken from website on 7/14/2022.
+-->
+
+
+<html>
+<head>
+<title>Authors</title>
+<link href="../style.css" rel="stylesheet" type="text/css" />
+
+<h1>Authors</h1>
+  <p>
+    View, add, update or delete authors in your database.
+  </p>
+
+  <!-- Tab Links -->
+  <nav>
+      <div>
+        <h4>Navigation Bar</h4>
+      </div>
+      <ul class='nav-links'>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="patrons.html">Patrons</a></li>
+        <li><a href="checkedoutitems.html">Checked Out Items</a></li>
+        <li><a href="itemlocations.html">Item Locations</a></li>
+        <li><a href="onlinelibraries.html">Online Libraries</a></li>
+        <li><a href="books.html">Books</a></li>
+        <li><a class='active' href="authors.html">Authors</a></li>
+        <li><a href="genres.html">Genres</a></li>
+      </ul>
+  </nav>
+    
+    <!-- VIEW, UPDATE, DELETE, CREATE-->
+    <!-- view -->
+    <div id="overviewAuthors" style="display: block">
+      <p><strong>Overview Authors</strong></p>
+      <table border="1" cellpadding="5">
+        <tr>
+          <th>ID Author</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+        </tr>
+        <tr>
+          <td align="right" >1</td>
+          <td align="right" >Delia</td>
+          <td align="right" >Owens</td>
+        </tr>
+        <tr>
+          <td align="right" >2</td>
+          <td align="right" >Colleen</td>
+          <td align="right" >Hoover</td>
+        </tr>
+        <tr>
+          <td align="right" >3</td>
+          <td align="right" >Elin</td>
+          <td align="right" >Hilderbrand</td>
+        </tr>
+        <tr>
+          <td align="right" >4</td>
+          <td align="right" >John</td>
+          <td align="right" >Grisham</td>
+        </tr>
+    </table>
+    <p>&nbsp;</p>
+    </div> 
+    
+    <!-- search -->
+    <div id="search">
+      <form method="POST" id="searchAuthor">
+          <legend><strong>Search for Author by Last Name</strong>
+           </legend>
+            <fieldset class="fields">
+              <p>Returns all authors matching this last name.</p>
+              <label> Last Name </label> <input type="text" name="LastName" placeholder="Enter Last Name">
+          <p></p>    
+        </fieldset>
+            <input class="btn" type="submit" id="searchAuthor" value="Search">
+    </form> 
+    <p>&nbsp;</p>
+    </div>
+
+    <!-- Connect author to book -->
+    <div id="connectAuthorBook">
+      <form method="POST" id="connectAuthorBook">
+          <legend><strong>Connect an Author to a Book</strong>
+           </legend>
+            <fieldset class="fields">
+              <p></p>
+                <label> Select the book </label> <select name="Title">
+                    <option value="1" selected>Where the Crawdad's Sing</option>
+                    <option value="2">It Ends with Us</option>
+                    <option value="3">Verity</option>
+                    <option value="4">The Hotel Nantucket</option>
+                    </select>
+                <label> Select the author </label> <select name="Author">
+                    <option value="1" selected>Delia Owens</option>
+                    <option value="2">Colleen Hoover</option>
+                    <option value="3">Elin Hilderbrand</option>
+                    <option value="4">John Grisham</option>
+                    </select>
+                    <p></p>
+
+        </fieldset>
+            <input class="btn" type="submit" id="connectAuthorBook" value="Connect Author/Book">
+    </form> 
+    <p>&nbsp;</p>
+    </div>
+    
+    <!-- create -->
+    <div id="insert">
+        <form method="POST" id="addAuthor">
+            <legend><strong>Add Author</strong></legend>
+              <fieldset class="fields">
+              <p></p>
+
+                <label> First Name </label> <input type="text" name="FirstName" placeholder="Enter First Name">
+                <label> Last Name </label> <input type="text" name="LastName" placeholder="Enter Last Name">
+                <p></p>
+
+          </fieldset>
+              <input class="btn" type="submit" id="AddAuthor" value="Add Author">
+              <input class="btn" type="button" value="Cancel" onClick="browseAuthors()">
+      </form> 
+    </div>
+    
+    <!-- update -->
+    <p>&nbsp;</p>
+    <div id="update">
+        <form method="POST" id="UpdateAuthor">
+            <legend><strong>Update Author</strong></legend>
+              <fieldset class="fields">
+                <p></p>
+                <strong>CAUTION this will update all associated books.</strong>
+                <p>If an AUTHOR has changed their name, such as "Prince" to 
+                  "The Artist Formerly Known As Prince". Please create a NEW AUTHOR ENTRY.</p>
+                <p>If the AUTHOR has only one name, such as "Prince," please input this in Author Last Name and
+                  choose NULL for Author First Name.</p>
+              <input type="hidden" name="IDAuthor" id="updateIDAuthor" value="1">
+                <label> First Name </label> <input type="text" name="AuthorFirstName" placeholder="Enter First Name">
+                <label> Last Name </label> <input type="text" name="AuthorLastName" placeholder="Enter Last Name">
+                <p></p>
+
+          </fieldset>
+              <input class="btn" type="submit" id="updateSaveAuthor" value="Save Update Author">
+              <input class="btn" type="button" value="Cancel" onClick="browseAuthors()">
+      </form> 
+    </div>
+    
+    <!-- delete -->
+    <p>&nbsp;</p>
+    <div id="delete" style="display: block">
+      <form method="POST" id="deleteAuthor">
+          <legend><strong>Delete Author</strong></legend>
+              <fieldset class="fields">
+              <p>This will permanently delete an author from your database.</p>
+              <input type="hidden" name="IDAuthor" id="DeleteIDAuthor" value="1">
+              <label> First Name </label> <input type="text" name="AuthorFirstName" placeholder="Enter First Name">
+              <label> Last Name </label> <input type="text" name="AuthorLastName" placeholder="Enter Last Name">
+                <p></p>
+        </fieldset>
+        <input class="btn" type="submit" id="deleteAuthor" value="Delete Author">
+              <input class="btn" type="button" value="Cancel" onClick="browseAuthors()">
+      </form> 
+    </div>
+    
+    </body>
+    </html>
+    

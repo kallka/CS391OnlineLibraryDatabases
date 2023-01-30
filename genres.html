@@ -1,0 +1,154 @@
+<!--
+Uses as a model the example from CS340 Canvas Modules by Professor Curry.
+Taken from website on 7/14/2022.
+-->
+
+
+<html>
+<head>
+<title>Genres</title>
+<link href="../style.css" rel="stylesheet" type="text/css" />
+
+<h1>Genres</h1>
+  <p>
+    View, add, update or delete genres in your database.
+  </p>
+
+  <!-- Tab Links -->
+  <nav>
+      <div>
+        <h4>Navigation Bar</h4>
+      </div>
+      <ul class='nav-links'>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="patrons.html">Patrons</a></li>
+        <li><a href="checkedoutitems.html">Checked Out Items</a></li>
+        <li><a href="itemlocations.html">Item Locations</a></li>
+        <li><a href="onlinelibraries.html">Online Libraries</a></li>
+        <li><a href="books.html">Books</a></li>
+        <li><a href="authors.html">Authors</a></li>
+        <li><a class='active' href="genres.html">Genres</a></li>
+      </ul>
+  </nav>
+    
+    <!-- VIEW, UPDATE, DELETE, CREATE-->
+    <!-- view -->
+    <div id="overviewGenres" style="display: block">
+      <p><strong>Overview Genres</strong></p>
+      <table border="1" cellpadding="5">
+        <tr>
+          <th>ID Genre</th>
+          <th>Genre Category</th>
+        </tr>
+        <tr>
+          <td align="right" >1</td>
+          <td align="right" >Fiction</td>
+        </tr>
+        <tr>
+          <td align="right" >2</td>
+          <td align="right" >Nonfiction</td>
+        </tr>
+        <tr>
+          <td align="right" >3</td>
+          <td align="right" >Biography</td>
+        </tr>
+        <tr>
+          <td align="right" >4</td>
+          <td align="right" >Horror</td>
+        </tr>
+    </table>
+    <p>&nbsp;</p>
+    </div> 
+    
+    <!-- set genre to book -->
+    <div id="setGenre">
+      <form method="POST" id="setGenre">
+          <legend><strong>Set a Genre for a Book</strong>
+           </legend>
+            <fieldset class="fields">
+              <p></p>
+
+                <label> Select the book </label> <select name="Title">
+                    <option value="1" selected>Where the Crawdad's Sing</option>
+                    <option value="2">It Ends with Us</option>
+                    <option value="3">Verity</option>
+                    <option value="4">The Hotel Nantucket</option>
+                    </select>
+                <label> Select the genre </label> <select name="Genre">
+                    <option value="1" selected>Fiction</option>
+                    <option value="2">NonFiction</option>
+                    <option value="3">Biography</option>
+                    <option value="4">Horror</option>
+                    </select>
+                    <p></p>
+
+        </fieldset>
+            <input class="btn" type="submit" id="setGenre" value="Set Genre">
+    </form> 
+    <p>&nbsp;</p>
+    </div>
+    
+    <!-- create -->
+    <div id="insert">
+        <form method="POST" id="addGenre">
+            <legend><strong>Add Genre</strong></legend>
+              <fieldset class="fields">
+                <p></p>
+
+                <label> Genre Category </label> <input type="text" name="GenreCategory">
+                <p></p>
+
+          </fieldset>
+              <input class="btn" type="submit" id="addGenre" value="Add Genre">
+              <input class="btn" type="button" value="Cancel" onClick="browseGenres()">
+      </form> 
+    </div>
+    
+<!-- update genre-->
+<p>&nbsp;</p>
+<div id="update">
+  <form method="POST" id="UpdateGenre">
+      <legend><strong>Update Genre</strong></legend>
+      <fieldset class="fields">
+        
+          <p>CAUTION this will update the genre name for all associated books.</p>
+        <label> Select the genre </label> <select name="Genre">
+            <option value="1" selected>Fiction</option>
+            <option value="2">NonFiction</option>
+            <option value="3">Biography</option>
+            <option value="4">Horror</option>
+            </select>
+        <label> and change this genre name to: </label> <input type="text" name="Genre" placeholder="GENRE">
+        <p></p>
+
+      </fieldset>
+        <input class="btn" type="submit" id="UpdateGenre" value="Update Genre">
+        <input class="btn" type="button" value="Cancel" onClick="browseGenres()">
+</form> 
+</div>
+    
+    <!-- delete -->
+    <p>&nbsp;</p>
+    <div id="delete" style="display: block">
+      <form method="POST" id="deleteGenre">
+          <legend><strong>Delete Genre</strong></legend>
+              <fieldset class="fields">
+              <p>This will permanently delete a genre from your database.</p>
+              <input type="hidden" name="IDGenre" id="DeleteIDGenre" value="1">
+              <label> Select the genre </label> <select name="Genre">
+                <option value="1" selected>Fiction</option>
+                <option value="2">NonFiction</option>
+                <option value="3">Biography</option>
+                <option value="4">Horror</option>
+                </select>
+                <p></p>
+
+        </fieldset>
+        <input class="btn" type="submit" id="deleteGenre" value="Delete Genre">
+              <input class="btn" type="button" value="Cancel" onClick="browseGenres()">
+      </form> 
+    </div>
+    
+    </body>
+    </html>
+    

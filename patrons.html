@@ -1,0 +1,199 @@
+<!--
+Uses as a model the example from CS340 Canvas Modules by Professor Curry.
+Taken from website on 7/14/2022.
+-->
+
+
+<html>
+<head>
+<title>Patrons</title>
+<link href="../style.css" rel="stylesheet" type="text/css" />
+
+
+<script language="JavaScript">
+		function showform(dowhat) {
+			/*
+			* four DIVS: browse, insert, update, delete
+			* this function sets one visible the others not
+			*/
+			if (dowhat == 'insert'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'block';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'update'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'block';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'delete'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'block';
+			}
+      else if (dowhat == 'all'){
+				document.getElementById('browse').style.display = 'block';
+				document.getElementById('insert').style.display = 'block';
+				document.getElementById('update').style.display = 'block';
+				document.getElementById('delete').style.display = 'block';
+			}
+			else { //by default display browse
+				document.getElementById('browse').style.display = 'block';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+		}
+    function newPatron() { showform('insert'); }
+    function updatePatron(IDPatron) { showform('update'); }
+    function deletePatron(IDPatron) { showform ('delete'); }
+    function browsePatrons() { showform ('browse'); }
+    function showAll() { showform ('all'); }
+</script>
+</head>
+
+<body onload="browsePatrons()">
+<h1>Patron</h1>
+  <p>
+    View, add, update or delete patrons from your database.
+  </p>
+
+  <!-- Tab Links -->
+  <nav>
+      <div>
+        <h4>Navigation Bar</h4>
+      </div>
+      <ul class='nav-links'>
+        <li><a href="index.html">Home</a></li>
+        <li><a class='active' href="patrons.html">Patrons</a></li>
+        <li><a href="checkedoutitems.html">Checked Out Items</a></li>
+        <li><a href="itemlocations.html">Item Locations</a></li>
+        <li><a href="onlinelibraries.html">Online Libraries</a></li>
+        <li><a href="books.html">Books</a></li>
+        <li><a href="authors.html">Authors</a></li>
+        <li><a href="genres.html">Genres</a></li>
+      </ul>
+  </nav>
+
+<!-- VIEW, UPDATE, DELETE, CREATE-->
+<!-- view -->
+<div id="overview_patrons" style="display: block">
+  <p><strong>Overview Patrons</strong></p>
+  <table border="1" cellpadding="5">
+    <tr>
+      <th>ID Patron</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Number of Checked Out Items</th>
+      <th>Total Check Outs</th>
+    </tr>
+    <tr>
+      <td align="right" >1</td>
+      <td align="right" >Jonas</td>
+      <td align="right" >Tilde</td>
+      <td align="right" >jtilde@gmail.com</td>
+      <td align="right" >11</td>
+      <td align="right" >110</td>
+    </tr>
+    <tr>
+      <td align="right" >2</td>
+      <td align="right" >Amanda</td>
+      <td align="right" >Danai</td>
+      <td align="right" >danniii@gmail.com</td>
+      <td align="right" >1</td>
+      <td align="right" >20</td>
+    </tr>
+    <tr>
+      <td align="right" >3</td>
+      <td align="right" >Shinya</td>
+      <td align="right" >Ragna</td>
+      <td align="right" >sra@gmail.com</td>
+      <td align="right" >0</td>
+      <td align="right" >2</td>
+    </tr>
+</table>
+<p>&nbsp;</p>
+</div> 
+
+<!-- search -->
+<div id="search">
+  <form method="POST" id="searchPatron">
+      <legend><strong>Search for Patron by Name</strong>
+       </legend>
+        <fieldset class="fields">
+          <p>Returns patron id, full name, and email.</p>
+          <label> First Name </label> <input type="text" name="FirstName" placeholder="Enter First Name">
+          <label> Last Name </label> <input type="text" name="LastName" placeholder="Enter Last Name">
+          <p></p>
+    </fieldset>
+        <input class="btn" type="submit" id="seachPatron" value="Search">
+</form> 
+<p>&nbsp;</p>
+</div>
+
+<!-- create -->
+<div id="insert">
+    <form method="POST" id="addPatron">
+        <legend><strong>Add Patron</strong></legend>
+          <fieldset class="fields">
+            <p></p>
+            <label> First Name </label> <input type="text" name="FirstName" placeholder="Enter First Name">
+            <label> Last Name </label> <input type="text" name="LastName" placeholder="Enter Last Name">
+            <label> Email </label> <input type="email" name="email" placeholder="Enter Email">
+            <p></p>
+          </fieldset>
+          <input class="btn" type="submit" id="AddPatron" value="Add Patron">
+          <input class="btn" type="button" value="Cancel" onClick="browsePatrons()">
+	</form> 
+</div>
+
+<!-- update -->
+<p>&nbsp;</p>
+<div id="update">
+    <form method="POST" id="UpdatePatron">
+        <legend><strong>Update Patron</strong></legend>
+          <fieldset class="fields">
+            <p></p>
+            <label> Select Patron to Update </label> <select name="Patron">
+              <option value="1" selected>Jonas Tilde</option>
+              <option value="2">Amanda Danai</option>
+              <option value="3">Shinya Ragna</option>
+              </select>
+            <!-- <input type="hidden" name="IDPatron" id="UpdateIDPatron" value="1"> -->
+            <br>
+            <br>
+            <label> First Name </label> <input type="text" name="FirstName" placeholder="Enter First Name">
+            <label> Last Name </label> <input type="text" name="LastName" placeholder="Enter Last Name">
+            <label> Email </label> <input type="email" name="Email" placeholder="Enter Email">
+            <p></p>
+
+      </fieldset>
+          <input class="btn" type="submit" id="UpdateSavePatron" value="Save Update Patron">
+          <input class="btn" type="button" value="Cancel" onClick="browsePatrons()">
+
+	</form> 
+</div>
+
+<!-- delete -->
+<p>&nbsp;</p>
+<div id="delete" style="display: block">
+  <form method="POST" id="deletePatron">
+      <legend><strong>Delete Patron</strong></legend>
+          <fieldset class="fields">
+          <p>This will permanently delete the patron from your database.</p>
+          <input type="hidden" name="IDPatron" id="DeleteIDPatron" value="1">
+          <label> First Name </label> <input type="text" name="FirstName" placeholder="Enter First Name">
+          <label> Last Name </label> <input type="text" name="LastName" placeholder="Enter Last Name">
+          <p></p>
+    </fieldset>
+    <input class="btn" type="submit" id="DeletePatron" value="Delete Patron">
+          <input class="btn" type="button" value="Cancel" onClick="browsePatrons()">
+  </form> 
+</div>
+
+</body>
+</html>

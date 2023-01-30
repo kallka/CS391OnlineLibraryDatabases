@@ -1,0 +1,151 @@
+<!--
+Uses as a model the example from CS340 Canvas Modules by Professor Curry.
+Taken from website on 7/14/2022.
+-->
+
+
+<html>
+<head>
+<title>Online Libraries</title>
+<link href="../style.css" rel="stylesheet" type="text/css" />
+
+<h1>Online Libraries</h1>
+  <p>
+    View, add, update or delete an online library in your database.
+  </p>
+  <p>Please use the Item Locations button to add books to each library.</p>
+
+  <!-- Tab Links -->
+  <nav>
+      <div>
+        <h4>Navigation Bar</h4>
+      </div>
+      <ul class='nav-links'>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="patrons.html">Patrons</a></li>
+        <li><a href="checkedoutitems.html">Checked Out Items</a></li>
+        <li><a href="itemlocations.html">Item Locations</a></li>
+        <li><a class='active' href="onlinelibraries.html">Online Libraries</a></li>
+        <li><a href="books.html">Books</a></li>
+        <li><a href="authors.html">Authors</a></li>
+        <li><a href="genres.html">Genres</a></li>
+      </ul>
+  </nav>
+
+<!-- VIEW, UPDATE, DELETE, CREATE-->
+<!-- view, update, delete, create -->
+<div id="overview_patrons" style="display: block">
+  <p><strong>Overview Online Libraries</strong></p>
+  <table border="1" cellpadding="5">
+    <tr>
+      <th>ID Online Library</th>
+      <th>Online Library Name</th>
+      <th>Total Online Books</th>
+      <th>Monthly Borrowing Totals</th>
+    </tr>
+    <tr>
+      <td align="right" >1</td>
+      <td align="right" >Los Angeles Public Library</td>
+      <td align="right" >57,921</td>
+      <td align="right" >12,934</td>
+    </tr>
+    <tr>
+      <td align="right" >2</td>
+      <td align="right" >New York Public Library</td>
+      <td align="right" >17,831</td>
+      <td align="right" >10,431</td>
+    </tr>
+    <tr>
+      <td align="right" >3</td>
+      <td align="right" >Universal Digital Library</td>
+      <td align="right" >271</td>
+      <td align="right" >0</td>
+    </tr>
+    <tr>
+      <td align="right" >4</td>
+      <td align="right" >World Digital Library</td>
+      <td align="right" >19,301</td>
+      <td align="right" >2,695</td>
+    </tr>
+</table>
+<p>&nbsp;</p>
+</div> 
+
+<!-- search -->
+<div id="search">
+    <form method="POST" id="searchLibraries">
+        <legend><strong>Search Borrowed Items By Date Range</strong>
+        </legend>
+          <fieldset class="fields">
+            <p>            Returns number of borrowed items at each library in a given date range.</p>
+            <label> Start Date </label> <input type="date" name="StartDate">
+            <label> End Date </label> <input type="date" name="EndDate">
+            <p></p>
+      </fieldset>
+          <input class="btn" type="submit" id="searchTotals" value="Search">
+	</form> 
+</div>
+<p>&nbsp;</p>
+
+<!-- create new library-->
+<div id="insert" style="display: block">
+  <form id="addLibrary">
+      <legend><strong>Add Online Library</strong></legend>
+        <fieldset class="fields">
+          <p></p>
+          <label> Library Name </label> <input type="text" name="LibraryName" placeholder="Enter Library Name">
+          <p></p>
+        </fieldset>
+        <input class="btn" type="submit" id="AddLibrary" value="Add Library">
+        <input class="btn" type="button" value="Cancel">
+</form>
+</div>
+
+<!-- update a library-->
+<p>&nbsp;</p>
+<div id="update">
+  <form method="POST" id="UpdateLibrary">
+      <legend><strong>Update a Library Name</strong></legend>
+      <fieldset class="fields">
+        <p></p>
+        <label> Select the library </label> <select name="Library">
+          <option value="1" selected>Los Angeles Public Library</option>
+          <option value="2">New York Public Library</option>
+          <option value="3">Universal Digital Library</option>
+          <option value="4">World Digital Library</option>
+          </select>
+        <br> <br>
+        <label> Change library name to </label> 
+        <input type="text" name="LibraryName" placeholder="Enter Library Name">
+        <p></p>
+      </fieldset>
+        <input class="btn" type="submit" id="UpdateLibrary" value="Update">
+        <input class="btn" type="button" value="cancel" onClick="browseOnlineLibraries()">
+</form> 
+</div>
+
+    <!-- delete -->
+    <p>&nbsp;</p>
+    <div id="delete" style="display: block">
+      <form method="POST" id="deleteLibrary">
+          <legend><strong>Delete Online Library</strong></legend>
+              <fieldset class="fields">
+              <p>This will permanently delete a library from your database.</p>
+              <input type="hidden" name="IDBook" id="DeleteIDLibrary" value="1">
+              <label> Select the library </label> <select name="Library">
+                <option value="1" selected>Los Angeles Public Library</option>
+                <option value="2">New York Public Library</option>
+                <option value="3">Universal Digital Library</option>
+                <option value="4">World Digital Library</option>
+                </select>       
+                <p></p>
+        </fieldset>
+        <input class="btn" type="submit" id="deleteBook" value="Delete Book">
+              <input class="btn" type="button" value="Cancel" onClick="browseBooks()">
+      </form> 
+    </div>
+
+</body>
+</head>
+</html>
+

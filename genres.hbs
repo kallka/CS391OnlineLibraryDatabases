@@ -1,0 +1,101 @@
+<!--
+Uses as a model the example from CS340 Canvas Modules by Professor Curry.
+Taken from website on 7/14/2022.
+-->
+
+
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="./js/delete_genre.js"></script>
+
+
+<title>Genres</title>
+</head>
+
+<h1>Genres</h1>
+  <p>
+    View, add, update or delete genres in your database.
+  </p>
+
+    
+    <!-- VIEW, UPDATE, DELETE, CREATE-->
+    <!-- view -->
+    <div id="overview_genres" style="display: block">
+      <h2>Overview Genres</h2>
+    <table id="genre-table">
+    <thead>
+        <tr>
+            {{#each data.[0]}}
+        <th>
+            {{@key}}
+        </th>
+            {{/each}}
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each data}}
+        <tr data-value={{this.id}}>>
+            <td>{{this.IDGenre}}</td>
+            <td>{{this.GenreCategory}}</td>
+            <td><button onclick="deleteGenreJS({{this.IDGenre}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+    </table>
+    <p>&nbsp;</p>
+    </div> 
+    
+
+    
+    <!-- create -->
+    <div id="insert">
+      <fieldset class="fields">
+
+        <form id="add-genre-form" method="POST" action="/add-genre-form">
+            <legend><strong>Add Genre</strong></legend>
+                <p></p>
+
+                <label> Genre Category </label> 
+                <input name="input-genre" id="input-genre" placeholder="Enter Genre Category">
+                <p></p>
+                <input class="btn" type="submit" id="addGenre" value="Add Genre">
+      </form> 
+    </fieldset>
+
+    </div>
+    
+<!-- update genre-->
+<p>&nbsp;</p>
+<div id="update">
+<fieldset class="fields">
+
+  <form method="POST" id="UpdateGenre">
+      <legend><strong>Update Genre Category</strong></legend>
+        
+          <p>CAUTION this will update the genre name for all associated books.</p>
+        <label> Select Genre Category to Change: </label> 
+        <select name="input-genre" id="oldGenre">
+            <option>Genre Category</option>
+            {{#each data}}
+              <option value="{{this.IDGenre}}">{{this.GenreCategory}}</option>
+            {{/each}}    
+            </select>
+            <br>
+            <p></p>
+        <label> Change Genre Category: </label> 
+        <input type="text" id="updateGenre" placeholder="Enter New Genre Category">
+        <p></p>
+        <input type="submit">
+
+    </form> 
+  </fieldset>
+   
+  <script src="./js/update_genre.js"></script> 
+</div>
+    
+   
+    
+    </html>
+    

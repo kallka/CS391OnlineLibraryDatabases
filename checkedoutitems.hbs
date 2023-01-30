@@ -1,0 +1,94 @@
+<!--
+Uses as a model the example from CS340 Canvas Modules by Professor Curry.
+Taken from website on 7/14/2022.
+-->
+
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="./js/delete_checkedoutitems.js"></script>
+<title>Checked Out Items</title>
+</head>
+
+<body>
+<h1>Checked Out Items</h1>
+<p>View, add, update, or delete checked out items.
+  (Notes: This is the page that best represents CheckedOutItemDetails; however Checked Out Items made
+  for a better page title. Both tables represent this list of checked out items. In addition, this page
+  pulls from the tables: Patrons, ItemLocations, Books, OnlineLibraries, Authors, and Genres.
+  It makes it easier to see how items would be updated.)   
+</p>
+
+
+<!-- VIEW, UPDATE, DELETE, CREATE-->
+<!-- view -->
+<div id="overview_checkedoutitems" style="display: block">
+    <p><strong>Overview Checked Out Items</strong></p>
+    <table id="checkedoutitems-table">
+      <tr>
+          <th>Checked Out Item ID</th>
+          <th>Patron First Name</th>
+          <th>Patron Last Name</th>
+          <th>Title</th>
+          <th>Library Name</th>
+          <th>Length Checked Out</th>
+          <th>Date Checked Out</th>
+
+          <th>Delete</th>
+
+      </tr>
+      {{#each table_info}}
+      <tr>
+          <td>{{this.IDCheckedOutItem}}</td>
+          <td>{{this.FirstName}}</td>
+          <td>{{this.LastName}}</td>
+          <td>{{this.Title}}</td>
+          <td>{{this.LibraryName}}</td>
+          <td>{{this.RentalDuration}}</td>
+          <td>{{this.RentalDate}}</td>
+          <td><button onclick="deleteCheckedOutItemsJS({{this.IDCheckedOutItem}})">Delete</button></td>
+
+      </tr>
+      {{/each}}
+
+    </table>
+       
+    <p>&nbsp;</p>
+    </div> 
+
+<!-- create -->
+<div id="insert" style="display: block">
+  <fieldset class="fields">
+
+    <form method="POST" id="addcheckedoutitem" action="/add-checkedout-form">
+        <legend><strong>Check Out Item </strong></legend>
+            <p></p>
+            <label> Patron </label> <select name="Patron">
+              {{#each patron_info}}
+                <option value="{{this.IDPatron}}">{{this.FirstName}} {{this.LastName}}</option>
+                {{/each}}
+              </select>
+
+              <br>
+              <label> Item Location </label> <select name="ItemLocation">
+                {{#each item_location_info}}
+                <option value="{{this.IDItemLocation}}">{{this.Title}} at {{this.LibraryName}}</option>
+                {{/each}}
+                </select>  
+            <br>
+           
+            <label> Checked Out Date </label> 
+            <input type="date" name="RentalDate">
+            <br>
+            <label> Check Out Length (days) </label> 
+            <input type="number" min="0" name="RentalDuration">
+            <p></p>
+
+          <input class="btn" type="submit" id="AddCheckedOutItem" value="Check Out">
+	</form>
+      <a href='/checkedoutitems'><button>Cancel</button></a>
+
+  </fieldset>
+</div>
+</body>
+</html>

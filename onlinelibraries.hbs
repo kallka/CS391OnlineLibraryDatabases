@@ -1,0 +1,117 @@
+<!--
+Uses as a model the example from CS340 Canvas Modules by Professor Curry.
+Taken from website on 7/14/2022.
+-->
+
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="./js/delete_onlinelibrary.js"></script>
+
+<title>Online Libraries</title>
+</head>
+<h1>Online Libraries</h1>
+  <p>
+    View, add, update or delete an online library in your database.
+  </p>
+  <p>Please use the Item Locations button to add books to each library.</p>
+
+</head>
+
+
+<!-- VIEW, UPDATE, DELETE, CREATE-->
+<!-- view, update, delete, create -->
+<div id="overview_onlinelibraries" style="display: block">
+  <h2>Overview Online Libraries</h2>
+  <table id = "onlinelibraries-table">
+    <thead>
+        <tr>
+            {{#each data.[0]}}
+        <th>
+            {{@key}}
+        </th>
+            {{/each}}
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each data}}
+        <tr data-value={{this.id}}>>
+            <td>{{this.IDOnlineLibrary}}</td>
+            <td>{{this.LibraryName}}</td>
+            <td><button onclick="deleteOnlineLibraryJS({{this.IDOnlineLibrary}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+    </table>
+       
+    <p>&nbsp;</p>
+    </div> 
+    
+<!-- SEARCH for library-->
+<p>&nbsp;</p>
+<div id="insert" style="display: block">
+          <fieldset class="fields">
+  <form id="search-OnlineLibrary-form" method="GET" action="/onlinelibraries">
+      <legend><strong>Search for an Online Library</strong></legend>
+          <p></p>
+          <label> Online Library Name </label> 
+          <input name="inputlibrary" id="input-library-search" placeholder="Enter Library Category">
+          <p></p>
+          <input class="btn" type="submit" id="addLibrary" value="Search Library">
+          <a href='/OnlineLibraries'><button>Reset</button></a>
+</form>
+        </fieldset>
+
+</div>
+<!-- INSERT new library-->
+<p>&nbsp;</p>
+
+<div id="insert" style="display: block">
+            <fieldset class="fields">
+
+  <form id="add-OnlineLibrary-form" method="POST" action="/add-OnlineLibrary-form">
+      <legend><strong>Add Online Library</strong></legend>
+          <p></p>
+          <label> Online Library Name </label> 
+                <input name="input-library" id="input-library" placeholder="Enter Library Category">
+          <p></p>
+          <input class="btn" type="submit" id="addLibrary" value="Add Library">
+        </fieldset>
+</form>
+        </fieldset>
+
+</div>
+
+<!-- update a library-->
+<p>&nbsp;</p>
+<div id="update">
+        <fieldset class="fields">
+
+  <form method="POST" id="UpdateLibrary">
+      <legend><strong>Update a Library Name</strong></legend>
+        <p></p>
+        
+
+      <label for ="input-library"> Select Online Library to Update:  </label> 
+          <select name="input-library" id="SelectLibrary">
+              <option> Library Name Name</option>
+              {{#each data}}
+              <option value="{{this.IDOnlineLibrary}}">{{this.LibraryName}}</option>
+              {{/each}}
+          </select>
+          <br>
+          <br>
+          <label> New Library Name:  </label> 
+          <input type="text" name="Name" id="RevisedName" placeholder="Revised Library Name">
+          <p></p>
+          <input type="submit">
+</form> 
+      </fieldset>
+
+<script src="./js/update_onlinelibrary.js"></script> 
+</div>
+
+  
+</html>
+
