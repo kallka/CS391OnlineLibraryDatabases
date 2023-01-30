@@ -9,3 +9,4 @@ File Structure
   |_partials
 |_database
  
+# Authors: Emily Yu and Karina Kallas
