@@ -1,0 +1,94 @@
+<!--
+Uses as a model the example from CS340 Canvas Modules by Professor Curry.
+Taken from website on 7/14/2022.
+-->
+
+
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="./js/delete_author.js"></script>
+
+<title>Authors</title>
+</head>
+
+<h1>Authors</h1>
+  <p>
+    View, add, update or delete authors in your database.
+    <p>CAUTION any updates or deletes to an author will affect all associated books.
+      Deleting an author from your collection will also delete all their books from the collection.</p>
+  </p>
+
+    <!-- VIEW, UPDATE, DELETE, CREATE-->
+    <!-- view -->
+    <div id="overviewAuthors" style="display: block">
+      <h2>Overview Authors</h2>
+    <table id = "author-table">
+    <thead>
+        <tr>
+            {{#each data.[0]}}
+        <th>
+            {{@key}}
+        </th>
+            {{/each}}
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each data}}
+        <tr data-value={{this.id}}>>
+            <td>{{this.IDAuthor}}</td>
+            <td>{{this.AuthorFirstName}}</td>
+            <td>{{this.AuthorLastName}}</td>
+            <td><button onclick="deleteAuthorJS({{this.IDAuthor}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+    </table>
+
+    <p>&nbsp;</p>
+    </div>
+
+    <!-- search -->
+    <div id="search">
+      <fieldset class="fields">
+
+      <form method="GET" id="searchAuthor" action="/authors">
+          <legend><strong>Search for Author by Last Name</strong> </legend>
+              <p>Displays all authors matching this last name.</p>
+              <label> Last Name </label> <input type="text" name="LastName" placeholder="Enter Last Name">
+          <p></p>
+            <input class="btn" type="submit" id="searchAuthor" value="Search">
+                      <p></p>
+
+    </form>
+              <a href='/authors'><button>Reset</button></a>
+
+    </fieldset>
+
+    <p>&nbsp;</p>
+    </div>
+
+  <!-- Add a new Author to the Database -->
+
+  <fieldset class="fields">
+
+        <form method="POST" id="addAuthor" action="/add-author-form">
+          <legend><strong>Add Author</strong>
+          <p>To add a new author to the database, please enter their information below.</p>
+
+          <p></p>
+          <label for="input-AuthorFirstName"> First Name </label>
+          <input type="text" name="input-AuthorFirstName" id="input-AuthorFirstName" placeholder="Enter First Name">
+
+          <label> Last Name </label>
+          <input type="text" name="input-AuthorLastName" id="input-AuthorLastName" placeholder="Enter Last Name">
+          <p></p>
+
+    <input type="submit">
+
+  </form>
+  </fieldset>
+
+    </div>
+  </html>
